@@ -16,6 +16,17 @@ struct ContentView_Previews: PreviewProvider {
 struct ContentView: View {
     var body: some View {
         TabView {
+            VStack {
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
+                Text("No Free World :C")
+            }
+            .padding()
+            .tabItem {
+                Label("Users", systemImage: "globe")
+            }
+            
             VStack(spacing: 48) {
                 ActionButton(props: .init(
                     style: .primary,
@@ -28,17 +39,6 @@ struct ContentView: View {
                     title: "Stop",
                     onTap: { print("handle Stop") })
                 )
-            }
-            .padding()
-            .tabItem {
-                Label("Users", systemImage: "globe")
-            }
-            
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
-                Text("No Free World :C")
             }
             .padding()
             .tabItem {
