@@ -9,28 +9,51 @@ import XCTest
 @testable import SureUniversalAssignment
 
 final class SureUniversalAssignmentTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testUserDecodedSuccessfully() throws {
+        let payloadType = [User].self
+        let data = try Data(resource: "users-response")
+        let response = decode(data, forType: payloadType) { _ in
+            XCTFail("Failed to decode json into \(payloadType) model")
         }
+        
+        let first = try XCTUnwrap(response?.first)
+        XCTAssertEqual(first.id, 1)
+        XCTAssertEqual(first.name, "Leanne Graham")
+        XCTAssertEqual(first.username, "Bret")
+        XCTAssertEqual(first.email, "Sincere@april.biz")
+        XCTAssertEqual(first.address.street, "Kulas Light")
+        XCTAssertEqual(first.address.suite, "Apt. 556")
+        XCTAssertEqual(first.address.city, "Gwenborough")
+        XCTAssertEqual(first.address.zipcode, "92998-3874")
+        XCTAssertEqual(first.address.geo.latitude, -37.3159)
+        XCTAssertEqual(first.address.geo.longitude, 81.1496)
+        XCTAssertEqual(first.phone, "1-770-736-8031 x56442")
+        XCTAssertEqual(first.website, "hildegard.org")
+        XCTAssertEqual(first.company.name, "Romaguera-Crona")
+        XCTAssertEqual(first.company.catchPhrase, "Multi-layered client-server neural-net")
+        XCTAssertEqual(first.company.bs, "harness real-time e-markets")
     }
+    
+}
 
+extension Data {
+    init(resource name: String, withExtension ext: String = ".json") throws {
+        guard let url = Bundle.main.url(forResource: name, withExtension: ext) else {
+            fatalError("Failed to access the resoure \(name).json for unit test.")
+        }
+        self = try Data(contentsOf: url)
+    }
+}
+
+func decode<T: Decodable>(
+    _ data: Data,
+    forType `type`: T.Type,
+    throwing: (Error) -> Void
+) -> T? {
+    do {
+        return try JSONDecoder().decode(type, from: data)
+    } catch {
+        throwing(error)
+        return nil
+    }
 }

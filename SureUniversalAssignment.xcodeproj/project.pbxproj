@@ -29,9 +29,23 @@
 		62C865E02D76287D0010BA73 /* SureUniversalAssignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SureUniversalAssignmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		62C865F62D762FD00010BA73 /* Exceptions for "SureUniversalAssignment" folder in "SureUniversalAssignmentTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				User.swift,
+				"users-response.json",
+			);
+			target = 62C865D52D76287D0010BA73 /* SureUniversalAssignmentTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		62C865C82D76287C0010BA73 /* SureUniversalAssignment */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				62C865F62D762FD00010BA73 /* Exceptions for "SureUniversalAssignment" folder in "SureUniversalAssignmentTests" target */,
+			);
 			path = SureUniversalAssignment;
 			sourceTree = "<group>";
 		};
