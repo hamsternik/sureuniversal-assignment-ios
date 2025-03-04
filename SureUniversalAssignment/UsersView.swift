@@ -31,13 +31,13 @@ struct UsersRootView: View {
     var body: some View {
         VStack {
             VStack {
-                Text("Users")
+                Text(props.title)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.vertical, 8)
                     .padding(.horizontal)
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: 44)
             
             List(props.users, id: \.self) {
                 UserView(props: $0)
