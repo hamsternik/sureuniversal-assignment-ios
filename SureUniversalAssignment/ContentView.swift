@@ -24,7 +24,13 @@ struct ContentView: View {
             }
             .padding()
             .tabItem {
-                Label("Users", systemImage: "globe")
+                Label {
+                    Text("Users")
+                } icon: {
+                    Image("icons8-heart-monitor-24")
+                        .resizable()
+                        .renderingMode(.template)
+                }
             }
             
             VStack(spacing: 48) {
@@ -42,7 +48,18 @@ struct ContentView: View {
             }
             .padding()
             .tabItem {
-                Label("Action", systemImage: "globe")
+                Label {
+                    Text("Action")
+                } icon: {
+                    Image("icons8-male-user-24")
+                        .resizable()
+                        .renderingMode(.template)
+                    // TODO: Build a custom Tab Bar component.
+                    ///  By default, SwiftUI's `.tabItem` content is used only to supply image and text
+                    ///  for the system-managed tab bar (thin wrapper over UITabBar). Any customization
+                    ///  around `.tabItem` content will be ignored by the framework.
+                        .background(Color.Secondary.background)
+                }
             }
         }
     }
