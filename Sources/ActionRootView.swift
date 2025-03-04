@@ -13,9 +13,13 @@ struct ActionRootView: View {
     }
     
     let props: Props
-    init(props: Props) {
+    init(props: Props, apiClientController: ApiClientController) {
+        self.apiClientController = apiClientController
         self.props = props
     }
+    
+    
+    private let apiClientController: ApiClientController
 
     var body: some View {
         VStack {
@@ -33,13 +37,17 @@ struct ActionRootView: View {
                 ActionButton(props: .init(
                     style: .primary,
                     title: "Start",
-                    onTap: { print("handle Start") })
+                    onTap: {
+                        apiClientController.startFetchingUsers()
+                    })
                 )
                 
                 ActionButton(props: .init(
                     style: .secondary,
                     title: "Stop",
-                    onTap: { print("handle Stop") })
+                    onTap: {
+                        apiClientController.stopFetchingUsers(forcing: true)
+                    })
                 )
                 Spacer()
             }
@@ -55,7 +63,8 @@ struct ActionRootView: View {
 struct ActionRootView_Previews: PreviewProvider {
     static var previews: some View {
         ActionRootView(
-            props: .init(title: "Action")
+            props: .init(title: "Action"),
+            apiClientController: ApiClientController()
         )
     }
 }

@@ -18,6 +18,14 @@ struct UsersRootView: View {
         let state: State
     }
     
+    let props: Props
+    init(props: Props, apiClientController: ApiClientController) {
+        self.apiClientController = apiClientController
+        self.props = props
+    }
+    
+    private let apiClientController: ApiClientController
+
     var body: some View {
         VStack {
             VStack {
@@ -54,11 +62,6 @@ struct UsersRootView: View {
         }
         .background(Color.Users.rootBackground)
     }
-    
-    let props: Props
-    init(props: Props) {
-        self.props = props
-    }
 }
 
 // MARK: Preview (UsersRootView)
@@ -74,7 +77,8 @@ struct UsersViewPreview: PreviewProvider {
                     .init(id: 2, name: "Ervin Howell"),
                     .init(id: 3, name: "Clementine Bauch"),
                 ])
-            )
+            ),
+            apiClientController: ApiClientController()
         )
     }
 }

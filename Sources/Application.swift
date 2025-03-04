@@ -8,10 +8,18 @@
 import SwiftUI
 
 @main
-struct Application: App {
+struct Application {
+    init() {
+        self.apiClientController = ApiClientController()
+    }
+    
+    private let apiClientController: ApiClientController
+}
+
+extension Application: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(
+            RootView(
                 props: .init(
                     usersProps: .init(
                         title: "Users",
@@ -24,7 +32,8 @@ struct Application: App {
                     actionProps: .init(
                         title: "Action"
                     )
-                )
+                ),
+                apiClientController: ApiClientController()
             )
         }
     }

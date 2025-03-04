@@ -7,34 +7,34 @@
 
 import Foundation
 
-struct User: Codable, Identifiable {
-    let id: Int
-    let name: String
-    let username: String
-    let email: String
-    let address: Address
-    let phone: String
-    let website: String
-    let company: Company
+public struct User: Codable, Identifiable {
+    public let id: Int
+    public let name: String
+    public let username: String
+    public let email: String
+    public let address: Address
+    public let phone: String
+    public let website: String
+    public let company: Company
 }
 
-struct Company: Codable {
-    let name: String
-    let catchPhrase: String
-    let bs: String
+public struct Company: Codable {
+    public let name: String
+    public let catchPhrase: String
+    public let bs: String
 }
 
-struct Address: Codable {
-    struct Geo: Codable {
-        let latitude: Double
-        let longitude: Double
+public struct Address: Codable {
+    public struct Geo: Codable {
+        public let latitude: Double
+        public let longitude: Double
         
         enum CodingKeys: String, CodingKey {
             case latitude = "lat"
             case longitude = "lng"
         }
         
-        init(from decoder: any Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let container: KeyedDecodingContainer<Address.Geo.CodingKeys> = try decoder
                 .container(keyedBy: Address.Geo.CodingKeys.self)
             let latitude = try container.decode(String.self, forKey: Address.Geo.CodingKeys.latitude)
@@ -44,9 +44,9 @@ struct Address: Codable {
         }
     }
     
-    let street: String
-    let suite: String
-    let city: String
-    let zipcode: String
-    let geo: Geo
+    public let street: String
+    public let suite: String
+    public let city: String
+    public let zipcode: String
+    public let geo: Geo
 }
