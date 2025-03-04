@@ -70,9 +70,9 @@ struct UsersViewPreview: PreviewProvider {
                 title: "Users",
 //                state: .loading
                 state: .loaded([
-                    .init(id: 1),
-                    .init(id: 2),
-                    .init(id: 3),
+                    .init(id: 1, name: "Leanne Graham"),
+                    .init(id: 2, name: "Ervin Howell"),
+                    .init(id: 3, name: "Clementine Bauch"),
                 ])
             )
         )
@@ -84,6 +84,7 @@ struct UsersViewPreview: PreviewProvider {
 struct UserView: View {
     struct Props: Hashable, Identifiable {
         let id: Int
+        let name: String
     }
     
     let props: Props
@@ -94,9 +95,13 @@ struct UserView: View {
     var body: some View {
         HStack {
             Spacer()
-            Text("User \(props.id)")
-                .font(.system(size: 14, weight: .regular, design: .default))
-                .padding(.vertical, 40)
+            VStack(spacing: 4) {
+                Text("User \(props.id)")
+                    .font(.system(size: 14, weight: .medium, design: .default))
+                Text("\(props.name)")
+                    .font(.system(size: 14, weight: .regular, design: .default))
+            }
+            .padding(.vertical, 40)
             Spacer()
         }
         .background(
@@ -113,10 +118,24 @@ struct UserView: View {
 struct UserView_Preview: PreviewProvider {
     static var previews: some View {
         VStack {
-            UserView(props: .init(id: 1))
-            UserView(props: .init(id: 2))
-            UserView(props: .init(id: 3))
+            UserView(
+                props: .init(
+                    id: 1,
+                    name: "Leanne Graham"
+                )
+            )
+            UserView(
+                props: .init(
+                    id: 2, 
+                    name: "Ervin Howell"
+                )
+            )
+            UserView(
+                props: .init(
+                    id: 3,
+                    name: "Clementine Bauch"
+                )
+            )
         }
     }
 }
-

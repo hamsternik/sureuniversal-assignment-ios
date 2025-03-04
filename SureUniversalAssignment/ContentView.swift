@@ -59,9 +59,9 @@ struct ContentView_Previews: PreviewProvider {
                 usersProps: .init(
                     title: "Users",
                     state: .loaded([
-                        .init(id: 1),
-                        .init(id: 2),
-                        .init(id: 3),
+                        .init(id: 1, name: "Leanne Graham"),
+                        .init(id: 2, name: "Ervin Howell"),
+                        .init(id: 3, name: "Clementine Bauch"),
                     ])
                 ),
                 actionProps: .init(title: "Action")
@@ -73,13 +73,13 @@ struct ContentView_Previews: PreviewProvider {
                 usersProps: .init(
                     title: "Users",
                     state: .loaded([
-                        .init(id: 1),
-                        .init(id: 2),
-                        .init(id: 3),
-                        .init(id: 4),
-                        .init(id: 5),
-                        .init(id: 6),
-                        .init(id: 7),
+                        .init(id: 1, name: "Leanne Graham"),
+                        .init(id: 2, name: "Ervin Howell"),
+                        .init(id: 3, name: "Clementine Bauch"),
+                        .init(id: 4, name: "Patricia Lebsack"),
+                        .init(id: 5, name: "Chelsey Dietrich"),
+                        .init(id: 6, name: "Dennis Schulist"),
+                        .init(id: 7, name: "Kurtis Weissnat"),
                     ])
                 ),
                 actionProps: .init(title: "Action")
