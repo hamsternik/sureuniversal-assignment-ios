@@ -15,10 +15,11 @@ struct Application: App {
                 props: .init(
                     usersProps: .init(
                         title: "Users",
-                        users: [
-                            .init(id: 1),
-                            .init(id: 2),
-                        ]
+                        state: .loading
+//                        state: .loaded([
+//                            .init(id: 1),
+//                            .init(id: 2),
+//                        ])
                     ),
                     actionProps: .init(
                         title: "Action"

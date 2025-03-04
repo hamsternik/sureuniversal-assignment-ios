@@ -58,11 +58,11 @@ struct ContentView_Previews: PreviewProvider {
             props: .init(
                 usersProps: .init(
                     title: "Users",
-                    users: [
+                    state: .loaded([
                         .init(id: 1),
                         .init(id: 2),
                         .init(id: 3),
-                    ]
+                    ])
                 ),
                 actionProps: .init(title: "Action")
             )
@@ -72,7 +72,7 @@ struct ContentView_Previews: PreviewProvider {
             props: .init(
                 usersProps: .init(
                     title: "Users",
-                    users: [
+                    state: .loaded([
                         .init(id: 1),
                         .init(id: 2),
                         .init(id: 3),
@@ -80,7 +80,7 @@ struct ContentView_Previews: PreviewProvider {
                         .init(id: 5),
                         .init(id: 6),
                         .init(id: 7),
-                    ]
+                    ])
                 ),
                 actionProps: .init(title: "Action")
             )

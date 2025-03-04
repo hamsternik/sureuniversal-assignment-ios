@@ -9,8 +9,13 @@ import SwiftUI
 
 struct UsersRootView: View {
     struct Props {
+        enum State {
+            case loading
+            case loaded([UserView.Props])
+        }
+       
         let title: String
-        let users: [UserView.Props]
+        let state: State
     }
     
     var body: some View {
@@ -24,19 +29,28 @@ struct UsersRootView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: 44)
             
-            List(props.users, id: \.self) {
-                UserView(props: $0)
-                /// affects the individual row views, removing List built-in separator for each row
-                    .listRowSeparator(.hidden)
-                /// affects the individual row views, setting bg color for each row
-                    .listRowBackground(Color.Users.contentBackground)
+            switch props.state {
+            case .loading:
+                VStack {
+                    Spacer()
+                    Text("No users have been downloaded yet.")
+                    Spacer()
+                }
+            case .loaded(let users):
+                List(users, id: \.self) {
+                    UserView(props: $0)
+                    /// affects the individual row views, removing List built-in separator for each row
+                        .listRowSeparator(.hidden)
+                    /// affects the individual row views, setting bg color for each row
+                        .listRowBackground(Color.Users.contentBackground)
+                }
+                .listStyle(.plain)
+                /// On iOS 16+ disable the default white background.
+                .scrollContentBackground(.hidden)
+                /// Set background color for the whole component,
+                /// when there is no many elements need to scroll.
+                .background(Color.Users.contentBackground)
             }
-            .listStyle(.plain)
-            /// On iOS 16+ disable the default white background.
-            .scrollContentBackground(.hidden)
-            /// Set background color for the whole component,
-            /// when there is no many elements need to scroll.
-            .background(Color.Users.contentBackground)
         }
         .background(Color.Users.rootBackground)
     }
@@ -54,11 +68,12 @@ struct UsersViewPreview: PreviewProvider {
         UsersRootView(
             props: .init(
                 title: "Users",
-                users: [
+//                state: .loading
+                state: .loaded([
                     .init(id: 1),
                     .init(id: 2),
                     .init(id: 3),
-                ]
+                ])
             )
         )
     }
