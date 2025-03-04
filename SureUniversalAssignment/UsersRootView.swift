@@ -7,21 +7,6 @@
 
 import SwiftUI
 
-struct UsersViewPreview: PreviewProvider {
-    static var previews: some View {
-        UsersRootView(
-            props: .init(
-                title: "Users",
-                users: [
-                    .init(id: 1),
-                    .init(id: 2),
-                    .init(id: 3),
-                ]
-            )
-        )
-    }
-}
-
 struct UsersRootView: View {
     struct Props {
         let title: String
@@ -62,17 +47,24 @@ struct UsersRootView: View {
     }
 }
 
-// MARK: - UserView
+// MARK: Preview (UsersRootView)
 
-struct UserView_Preview: PreviewProvider {
+struct UsersViewPreview: PreviewProvider {
     static var previews: some View {
-        VStack {
-            UserView(props: .init(id: 1))
-            UserView(props: .init(id: 2))
-            UserView(props: .init(id: 3))
-        }
+        UsersRootView(
+            props: .init(
+                title: "Users",
+                users: [
+                    .init(id: 1),
+                    .init(id: 2),
+                    .init(id: 3),
+                ]
+            )
+        )
     }
 }
+
+// MARK: - UserView
 
 struct UserView: View {
     struct Props: Hashable, Identifiable {
@@ -100,3 +92,16 @@ struct UserView: View {
         .padding(.horizontal, 16)
     }
 }
+
+// MARK: Preview (UserView)
+
+struct UserView_Preview: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            UserView(props: .init(id: 1))
+            UserView(props: .init(id: 2))
+            UserView(props: .init(id: 3))
+        }
+    }
+}
+
