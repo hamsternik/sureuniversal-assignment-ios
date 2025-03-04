@@ -9,58 +9,108 @@ import SwiftUI
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(
+            props: .init(
+                usersProps: .init(
+                    title: "Users",
+                    users: [
+                        .init(id: 1),
+                        .init(id: 2),
+                        .init(id: 3),
+                    ]
+                ),
+                actionProps: .init(title: "Action")
+            )
+        )
+        
+        ContentView(
+            props: .init(
+                usersProps: .init(
+                    title: "Users",
+                    users: [
+                        .init(id: 1),
+                        .init(id: 2),
+                        .init(id: 3),
+                        .init(id: 4),
+                        .init(id: 5),
+                        .init(id: 6),
+                        .init(id: 7),
+                    ]
+                ),
+                actionProps: .init(title: "Action")
+            )
+        )
     }
 }
 
 struct ContentView: View {
+    struct Props {
+        let usersProps: UsersRootView.Props
+        let actionProps: ActionRootView.Props
+    }
+    
+    let props: Props
+    init(props: Props) {
+        self.props = props
+    }
+    
     var body: some View {
         TabView {
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
-                Text("No Free World :C")
-            }
-            .padding()
-            .tabItem {
-                Label {
-                    Text("Users")
-                } icon: {
-                    Image("icons8-heart-monitor-24")
-                        .resizable()
-                        .renderingMode(.template)
+            UsersRootView(props: props.usersProps)
+                .tabItem {
+                    Label {
+                        Text("Users")
+                    } icon: {
+                        Image("icons8-heart-monitor-24")
+                            .resizable()
+                            .renderingMode(.template)
+                    }
                 }
-            }
             
-            VStack(spacing: 48) {
-                ActionButton(props: .init(
-                    style: .primary,
-                    title: "Start",
-                    onTap: { print("handle Start") })
-                )
-                
-                ActionButton(props: .init(
-                    style: .secondary,
-                    title: "Stop",
-                    onTap: { print("handle Stop") })
-                )
-            }
-            .padding()
-            .tabItem {
-                Label {
-                    Text("Action")
-                } icon: {
-                    Image("icons8-male-user-24")
-                        .resizable()
-                        .renderingMode(.template)
-                    // TODO: Build a custom Tab Bar component.
-                    ///  By default, SwiftUI's `.tabItem` content is used only to supply image and text
-                    ///  for the system-managed tab bar (thin wrapper over UITabBar). Any customization
-                    ///  around `.tabItem` content will be ignored by the framework.
-                        .background(Color.Secondary.background)
+            ActionRootView(props: props.actionProps)
+                .padding()
+                .tabItem {
+                    Label {
+                        Text("Action")
+                    } icon: {
+                        Image("icons8-male-user-24")
+                            .resizable()
+                            .renderingMode(.template)
+                        // TODO: Build a custom Tab Bar component.
+                        ///  By default, SwiftUI's `.tabItem` content is used only to supply image and text
+                        ///  for the system-managed tab bar (thin wrapper over UITabBar). Any customization
+                        ///  around `.tabItem` content will be ignored by the framework.
+                            .background(Color.Secondary.background)
+                    }
                 }
-            }
         }
     }
 }
+
+struct ActionRootView: View {
+    struct Props {
+        let title: String
+    }
+    
+    var body: some View {
+        VStack(spacing: 48) {
+            ActionButton(props: .init(
+                style: .primary,
+                title: "Start",
+                onTap: { print("handle Start") })
+            )
+            
+            ActionButton(props: .init(
+                style: .secondary,
+                title: "Stop",
+                onTap: { print("handle Stop") })
+            )
+        }
+    }
+    
+    let props: Props
+    init(props: Props) {
+        self.props = props
+    }
+}
+
