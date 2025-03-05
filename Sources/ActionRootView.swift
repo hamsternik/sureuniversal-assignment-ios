@@ -46,7 +46,7 @@ struct ActionRootView: View {
                     style: .secondary,
                     title: "Stop",
                     onTap: {
-                        usersController.stopFetchingUsers(forceCleanup: true)
+                        usersController.stopFetchingUsers(cleanIfNeeded: true)
                     })
                 )
                 Spacer()

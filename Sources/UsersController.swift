@@ -9,7 +9,7 @@ import Foundation
 
 public protocol UsersHandling {
     func startFetchingUsers()
-    func stopfetchingUsers(forceCleanup: Bool)
+    func stopfetchingUsers(cleanIfNeeded: Bool)
 }
 
 public final class UsersController {
@@ -29,7 +29,7 @@ public final class UsersController {
         timer?.setEventHandler { [weak self] in
             guard let self = self else { return }
             guard self.currentUserId <= 10 else {
-                return self.stopFetchingUsers(forceCleanup: false)
+                return self.stopFetchingUsers(cleanIfNeeded: false)
             }
             self.apiClient.fetchUser(byId: self.currentUserId) { result in
                 switch result {
@@ -40,7 +40,7 @@ public final class UsersController {
                     }
                 case .failure(let error):
                     print(">>> Failed to fetch user: \(error)")
-                    self.stopFetchingUsers(forceCleanup: false)
+                    self.stopFetchingUsers(cleanIfNeeded: false)
                 }
             }
             self.currentUserId += 1
@@ -49,11 +49,11 @@ public final class UsersController {
         print(">>> timer?.isCancelled \(String(describing: timer?.isCancelled))")
     }
     
-    public func stopFetchingUsers(forceCleanup: Bool) {
+    public func stopFetchingUsers(cleanIfNeeded: Bool) {
         print(">>> stop fetching users (invalidate timer, clean data)")
         invalidateState()
         
-        if forceCleanup {
+        if cleanIfNeeded {
             users.removeAll()
             currentUserId = 1
         }
