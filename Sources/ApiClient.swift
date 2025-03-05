@@ -60,8 +60,6 @@ public final class ApiClient: Api {
                 )
             }
             
-//            let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//            let data = try? JSONSerialization.data(withJSONObject: json, options: [])
             guard let user = try? JSONDecoder().decode(User.self, from: data) else {
                 return completion(
                     .failure(.notAvailableData)
