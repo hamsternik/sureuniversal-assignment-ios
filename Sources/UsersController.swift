@@ -23,9 +23,14 @@ public final class LiveUsersController: UsersController {
     @Published public private(set) var users: [User] = []
     
     public func startFetchingUsers() {
-        // TODO: handle prevent to fetch multiple times, eg. when user taps > 1 time before all users are downloaded.
-        // TODO: handle when all users are downloaded, then tap on Start fetches data once again.
-        //        if timer == nil || timer?.isCancelled == true { return }
+        func terminateIfNeeded() {
+            guard timer == nil || timer?.isCancelled == true else { return }
+            if currentUserId > 10 {
+                stopFetchingUsers(cleanIfNeeded: true)
+            }
+        }
+        
+        terminateIfNeeded()
         
         timer = DispatchSource.makeTimerSource(queue: queue)
         timer?.schedule(deadline: .now(), repeating: .seconds(1))
@@ -59,9 +64,9 @@ public final class LiveUsersController: UsersController {
         invalidateState()
         
         if cleanIfNeeded {
+            currentUserId = 1
             DispatchQueue.main.async {
                 self.users.removeAll()
-                self.currentUserId = 1
             }
         }
     }
