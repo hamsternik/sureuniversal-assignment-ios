@@ -2,6 +2,13 @@
 
 This repository contains the SureUniversalAssignment project.
 
+<details>
+    <summary>Demo - Recording</summary>
+![ezgif-3743a133d00d9b](https://github.com/user-attachments/assets/510a74b8-64e7-4e00-af80-db6e98763b5e)
+
+</details>
+
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
