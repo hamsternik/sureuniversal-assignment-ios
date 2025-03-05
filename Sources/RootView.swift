@@ -14,18 +14,18 @@ struct RootView: View {
     }
     
     let props: Props
-    init(props: Props, apiClientController: ApiClientController) {
+    init(props: Props, usersController: UsersController) {
         self.props = props
-        self.apiClientController = apiClientController
+        self.usersController = usersController
     }
     
-    private let apiClientController: ApiClientController
+    private let usersController: UsersController
     
     var body: some View {
         TabView {
             UsersRootView(
                 props: props.usersProps,
-                apiClientController: apiClientController
+                usersController: usersController
             )
             .tabItem {
                 Label {
@@ -39,7 +39,7 @@ struct RootView: View {
             
             ActionRootView(
                 props: props.actionProps,
-                apiClientController: apiClientController
+                usersController: usersController
             )
             .tabItem {
                 Label {
@@ -75,7 +75,7 @@ struct RootView_Previews: PreviewProvider {
                 ),
                 actionProps: .init(title: "Action")
             ),
-            apiClientController: ApiClientController()
+            usersController: UsersController(apiClient: ApiClient())
         )
         
         RootView(
@@ -94,7 +94,7 @@ struct RootView_Previews: PreviewProvider {
                 ),
                 actionProps: .init(title: "Action")
             ),
-            apiClientController: ApiClientController()
+            usersController: UsersController(apiClient: ApiClient())
         )
     }
 }

@@ -13,13 +13,13 @@ struct ActionRootView: View {
     }
     
     let props: Props
-    init(props: Props, apiClientController: ApiClientController) {
-        self.apiClientController = apiClientController
+    init(props: Props, usersController: UsersController) {
         self.props = props
+        self.usersController = usersController
     }
     
     
-    private let apiClientController: ApiClientController
+    private let usersController: UsersController
 
     var body: some View {
         VStack {
@@ -38,7 +38,7 @@ struct ActionRootView: View {
                     style: .primary,
                     title: "Start",
                     onTap: {
-                        apiClientController.startFetchingUsers()
+                        usersController.startFetchingUsers()
                     })
                 )
                 
@@ -46,7 +46,7 @@ struct ActionRootView: View {
                     style: .secondary,
                     title: "Stop",
                     onTap: {
-                        apiClientController.stopFetchingUsers(forcing: true)
+                        usersController.stopFetchingUsers(forceCleanup: true)
                     })
                 )
                 Spacer()
@@ -64,7 +64,7 @@ struct ActionRootView_Previews: PreviewProvider {
     static var previews: some View {
         ActionRootView(
             props: .init(title: "Action"),
-            apiClientController: ApiClientController()
+            usersController: UsersController(apiClient: ApiClient())
         )
     }
 }

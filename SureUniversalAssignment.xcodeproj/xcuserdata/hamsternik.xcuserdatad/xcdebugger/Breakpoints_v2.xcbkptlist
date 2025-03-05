@@ -8,46 +8,16 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F025BBB3-E831-49DE-98A0-31E6EBF18E84"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sources/ApiClientController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "startFetchingUsers()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F025BBB3-E831-49DE-98A0-31E6EBF18E84 - e4e6ec305e4058cd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in SureUniversalAssignment.ApiClientController.startFetchingUsers() -&gt; ()"
-                  moduleName = "SureUniversalAssignment.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hamsternik/Developer/@projects/SureUniversalAssignment/Sources/ApiClientController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47">
-               </Location>
-               <Location
-                  uuid = "F025BBB3-E831-49DE-98A0-31E6EBF18E84 - e01817c3b68ca348"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;SureUniversalAssignment.User, SureUniversalAssignment.ApiError&gt;) -&gt; () in closure #1 () -&gt; () in SureUniversalAssignment.ApiClientController.startFetchingUsers() -&gt; ()"
-                  moduleName = "SureUniversalAssignment.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hamsternik/Developer/@projects/SureUniversalAssignment/Sources/ApiClientController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct Application {
-    init() {
-        self.apiClientController = ApiClientController()
-    }
+//    init() {
+//        self.apiClientController = ApiClientController()
+//    }
     
-    private let apiClientController: ApiClientController
+    private let apiClient = ApiClient()
 }
 
 extension Application: App {
@@ -33,7 +33,9 @@ extension Application: App {
                         title: "Action"
                     )
                 ),
-                apiClientController: ApiClientController()
+                usersController: UsersController(
+                    apiClient: apiClient
+                )
             )
         }
     }

@@ -19,12 +19,12 @@ struct UsersRootView: View {
     }
     
     let props: Props
-    init(props: Props, apiClientController: ApiClientController) {
-        self.apiClientController = apiClientController
+    init(props: Props, usersController: UsersController) {
         self.props = props
+        self.usersController = usersController
     }
     
-    private let apiClientController: ApiClientController
+    private let usersController: UsersController
 
     var body: some View {
         VStack {
@@ -78,7 +78,7 @@ struct UsersViewPreview: PreviewProvider {
                     .init(id: 3, name: "Clementine Bauch"),
                 ])
             ),
-            apiClientController: ApiClientController()
+            usersController: UsersController(apiClient: ApiClient())
         )
     }
 }
