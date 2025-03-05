@@ -8,23 +8,21 @@
 import Foundation
 import Combine
 
-private let usersControllerQueue = DispatchQueue(
-    label: "com.sureuniversal.apiclient.queue",
-    qos: .utility /// these task are low priority but have higher priority than .background QoS
-//    qos: .userInitiated /// these tasks are high priority but do not necessarily need to run on the main thread
-)
-
 public struct DispatchSourceConfiguration {
     public let queue: DispatchQueue
     public let repeatingInterval: DispatchTimeInterval
     
     public static let live: DispatchSourceConfiguration = .init(
-        queue: usersControllerQueue,
+        queue: DispatchQueue(
+            label: "com.sureuniversal.apiclient.queue",
+            qos: .utility /// these task are low priority but have higher priority than .background QoS
+        //    qos: .userInitiated /// these tasks are high priority but do not necessarily need to run on the main thread
+        ),
         repeatingInterval: .seconds(1)
     )
     
     public static let mock: DispatchSourceConfiguration = .init(
-        queue: usersControllerQueue,
+        queue: .global(),
         repeatingInterval: .milliseconds(50)
     )
 }
@@ -51,14 +49,20 @@ public final class LiveUsersController: UsersController {
     private let configuration: DispatchSourceConfiguration
     
     public func startFetchingUsers() {
-        func terminateIfNeeded() {
-            guard timer == nil || timer?.isCancelled == true else { return }
+        func terminateIfNeeded() -> Bool {
+            if let timer = timer, !timer.isCancelled {
+                return true
+            }
+
             if currentUserId > 10 {
                 stopFetchingUsers(cleanIfNeeded: true)
+                return true
             }
+            
+            return false
         }
         
-        terminateIfNeeded()
+        if terminateIfNeeded() { return }
         
         timer = DispatchSource.makeTimerSource(queue: configuration.queue)
         timer?.schedule(deadline: .now(), repeating: configuration.repeatingInterval)
@@ -76,15 +80,13 @@ public final class LiveUsersController: UsersController {
                     DispatchQueue.main.async {
                         self.users.append(user)
                     }
-                case .failure(let error):
-                    print(">>> Failed to fetch user: \(error)")
+                case .failure:
                     self.stopFetchingUsers(cleanIfNeeded: false)
                 }
             }
             self.currentUserId += 1
         }
         timer?.resume()
-        print(">>> timer?.isCancelled \(String(describing: timer?.isCancelled))")
     }
     
     public func stopFetchingUsers(cleanIfNeeded: Bool) {
