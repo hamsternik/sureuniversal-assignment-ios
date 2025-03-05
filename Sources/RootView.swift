@@ -7,24 +7,16 @@
 
 import SwiftUI
 
-struct RootView: View {
-    struct Props {
-        let usersProps: UsersRootView.Props
-        let actionProps: ActionRootView.Props
+struct RootView<TUsersController: UsersController>: View {
+    init(usersController: TUsersController) {
+        _usersController = .init(wrappedValue: usersController)
     }
     
-    let props: Props
-    init(props: Props, usersController: UsersController) {
-        self.props = props
-        self.usersController = usersController
-    }
-    
-    private let usersController: UsersController
-    
+    @StateObject var usersController: TUsersController
+
     var body: some View {
         TabView {
             UsersRootView(
-                props: props.usersProps,
                 usersController: usersController
             )
             .tabItem {
@@ -38,8 +30,15 @@ struct RootView: View {
             }
             
             ActionRootView(
-                props: props.actionProps,
-                usersController: usersController
+                props: .init(
+                    title: "Action",
+                    onTapStart: {
+                        usersController.startFetchingUsers()
+                    },
+                    onTapStop: {
+                        usersController.stopFetchingUsers(cleanIfNeeded: true)
+                    }
+                )
             )
             .tabItem {
                 Label {
@@ -64,37 +63,15 @@ struct RootView: View {
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
         RootView(
-            props: .init(
-                usersProps: .init(
-                    title: "Users",
-                    state: .loaded([
-                        .init(id: 1, name: "Leanne Graham"),
-                        .init(id: 2, name: "Ervin Howell"),
-                        .init(id: 3, name: "Clementine Bauch"),
-                    ])
-                ),
-                actionProps: .init(title: "Action")
-            ),
-            usersController: UsersController(apiClient: ApiClient())
+            usersController: PreviewUsersController(
+                users: []
+            )
         )
         
         RootView(
-            props: .init(
-                usersProps: .init(
-                    title: "Users",
-                    state: .loaded([
-                        .init(id: 1, name: "Leanne Graham"),
-                        .init(id: 2, name: "Ervin Howell"),
-                        .init(id: 3, name: "Clementine Bauch"),
-                        .init(id: 4, name: "Patricia Lebsack"),
-                        .init(id: 5, name: "Chelsey Dietrich"),
-                        .init(id: 6, name: "Dennis Schulist"),
-                        .init(id: 7, name: "Kurtis Weissnat"),
-                    ])
-                ),
-                actionProps: .init(title: "Action")
-            ),
-            usersController: UsersController(apiClient: ApiClient())
+            usersController: PreviewUsersController(
+                users: [.first, .second]
+            )
         )
     }
 }

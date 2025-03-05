@@ -6,18 +6,21 @@
 //
 
 import Foundation
+import Combine
 
-public protocol UsersHandling {
+public protocol UsersController: ObservableObject {
+    var users: [User] { get }
+    
     func startFetchingUsers()
-    func stopfetchingUsers(cleanIfNeeded: Bool)
+    func stopFetchingUsers(cleanIfNeeded: Bool)
 }
 
-public final class UsersController {
-    init(apiClient: ApiClient) {
+public final class LiveUsersController: UsersController {
+    public init(apiClient: ApiClient) {
         self.apiClient = apiClient
     }
     
-    public private(set) var users: [User] = []
+    @Published public private(set) var users: [User] = []
     
     public func startFetchingUsers() {
         // TODO: handle prevent to fetch multiple times, eg. when user taps > 1 time before all users are downloaded.
@@ -27,6 +30,8 @@ public final class UsersController {
         timer = DispatchSource.makeTimerSource(queue: queue)
         timer?.schedule(deadline: .now(), repeating: .seconds(1))
         timer?.setEventHandler { [weak self] in
+            precondition(!Thread.isMainThread, "Timer handler must not run on main thread!")
+            
             guard let self = self else { return }
             guard self.currentUserId <= 10 else {
                 return self.stopFetchingUsers(cleanIfNeeded: false)
@@ -34,8 +39,8 @@ public final class UsersController {
             self.apiClient.fetchUser(byId: self.currentUserId) { result in
                 switch result {
                 case .success(let user):
-                    self.queue.async {
-                        print(">>> Next user fetched: \(user.name), id: \(user.id)")
+                    print(">>> Next user fetched: \(user.name), id: \(user.id)")
+                    DispatchQueue.main.async {
                         self.users.append(user)
                     }
                 case .failure(let error):
@@ -54,8 +59,10 @@ public final class UsersController {
         invalidateState()
         
         if cleanIfNeeded {
-            users.removeAll()
-            currentUserId = 1
+            DispatchQueue.main.async {
+                self.users.removeAll()
+                self.currentUserId = 1
+            }
         }
     }
     
@@ -73,5 +80,21 @@ public final class UsersController {
         print(">>> invalidate timer state")
         timer?.cancel()
         timer = nil
+    }
+}
+
+public final class PreviewUsersController: UsersController {
+    public private(set) var users: [User]
+    
+    init(users: [User]) {
+        self.users = users
+    }
+    
+    public func startFetchingUsers()  {
+        users = [.first, .second]
+    }
+    
+    public func stopFetchingUsers(cleanIfNeeded: Bool) {
+        users.removeAll()
     }
 }

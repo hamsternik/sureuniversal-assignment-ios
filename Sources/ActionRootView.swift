@@ -10,17 +10,15 @@ import SwiftUI
 struct ActionRootView: View {
     struct Props {
         let title: String
+        let onTapStart: () -> Void
+        let onTapStop: () -> Void
     }
     
     let props: Props
-    init(props: Props, usersController: UsersController) {
+    init(props: Props) {
         self.props = props
-        self.usersController = usersController
     }
     
-    
-    private let usersController: UsersController
-
     var body: some View {
         VStack {
             VStack {
@@ -37,18 +35,14 @@ struct ActionRootView: View {
                 ActionButton(props: .init(
                     style: .primary,
                     title: "Start",
-                    onTap: {
-                        usersController.startFetchingUsers()
-                    })
-                )
+                    onTap: props.onTapStart
+                ))
                 
                 ActionButton(props: .init(
                     style: .secondary,
                     title: "Stop",
-                    onTap: {
-                        usersController.stopFetchingUsers(cleanIfNeeded: true)
-                    })
-                )
+                    onTap: props.onTapStop
+                ))
                 Spacer()
             }
             .padding(.horizontal, 8)
@@ -63,8 +57,11 @@ struct ActionRootView: View {
 struct ActionRootView_Previews: PreviewProvider {
     static var previews: some View {
         ActionRootView(
-            props: .init(title: "Action"),
-            usersController: UsersController(apiClient: ApiClient())
+            props: .init(
+                title: "Action",
+                onTapStart: { },
+                onTapStop: { }
+            )
         )
     }
 }

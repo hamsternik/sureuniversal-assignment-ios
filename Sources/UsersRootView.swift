@@ -7,29 +7,17 @@
 
 import SwiftUI
 
-struct UsersRootView: View {
-    struct Props {
-        enum State {
-            case loading
-            case loaded([UserView.Props])
-        }
-       
-        let title: String
-        let state: State
+struct UsersRootView<TUsersController: UsersController>: View {
+    init(usersController: TUsersController) {
+        _usersController = .init(wrappedValue: usersController)
     }
     
-    let props: Props
-    init(props: Props, usersController: UsersController) {
-        self.props = props
-        self.usersController = usersController
-    }
-    
-    private let usersController: UsersController
+    @StateObject var usersController: TUsersController
 
     var body: some View {
         VStack {
             VStack {
-                Text(props.title)
+                Text("Users")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.vertical, 8)
@@ -37,16 +25,15 @@ struct UsersRootView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: 44)
             
-            switch props.state {
-            case .loading:
+            if usersController.users.count == 0 {
                 VStack {
                     Spacer()
                     Text("No users have been downloaded yet.")
                     Spacer()
                 }
-            case .loaded(let users):
-                List(users, id: \.self) {
-                    UserView(props: $0)
+            } else {
+                List(usersController.users, id: \.self) {
+                    UserView(props: .init(id: $0.id, name: $0.name))
                     /// affects the individual row views, removing List built-in separator for each row
                         .listRowSeparator(.hidden)
                     /// affects the individual row views, setting bg color for each row
@@ -64,21 +51,14 @@ struct UsersRootView: View {
     }
 }
 
-// MARK: Preview 
+// MARK: Preview
 
 struct UsersViewPreview: PreviewProvider {
     static var previews: some View {
         UsersRootView(
-            props: .init(
-                title: "Users",
-//                state: .loading
-                state: .loaded([
-                    .init(id: 1, name: "Leanne Graham"),
-                    .init(id: 2, name: "Ervin Howell"),
-                    .init(id: 3, name: "Clementine Bauch"),
-                ])
-            ),
-            usersController: UsersController(apiClient: ApiClient())
+            usersController: PreviewUsersController(
+                users: [.first, .second]
+            )
         )
     }
 }
