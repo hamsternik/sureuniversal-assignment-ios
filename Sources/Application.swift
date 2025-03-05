@@ -13,7 +13,7 @@ struct Application: App {
         WindowGroup {
             RootView(
                 usersController: LiveUsersController(
-                    apiClient: ApiClient()
+                    apiClient: LiveApiClient()
                 )
             )
         }

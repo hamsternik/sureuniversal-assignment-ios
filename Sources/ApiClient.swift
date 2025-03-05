@@ -14,11 +14,11 @@ public enum ApiError: Error {
     case undefined
 }
 
-public protocol Api {
+public protocol ApiClient {
     func fetchUser(byId id: Int, completion: @escaping (Result<User, ApiError>) -> Void)
 }
 
-public final class ApiClient: Api {
+public final class LiveApiClient: ApiClient {
     public init(baseUri: String = "https://jsonplaceholder.typicode.com") {
         guard let url = URL(string: baseUri) else {
             fatalError("Failed to build base URL from string.")
@@ -75,4 +75,12 @@ public final class ApiClient: Api {
     // MARK: Private
     
     private let baseUrl: URL
+}
+
+public final class PreviewApiClient: ApiClient {
+    public func fetchUser(byId id: Int, completion: @escaping (Result<User, ApiError>) -> Void) {
+        return completion(
+            .success(.first)
+        )
+    }
 }

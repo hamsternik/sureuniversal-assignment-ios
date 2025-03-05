@@ -8,6 +8,29 @@
 import Foundation
 import Combine
 
+private let usersControllerQueue = DispatchQueue(
+    label: "com.sureuniversal.apiclient.queue",
+    qos: .utility /// these task are low priority but have higher priority than .background QoS
+//    qos: .userInitiated /// these tasks are high priority but do not necessarily need to run on the main thread
+)
+
+public struct DispatchSourceConfiguration {
+    public let queue: DispatchQueue
+    public let repeatingInterval: DispatchTimeInterval
+    
+    public static let live: DispatchSourceConfiguration = .init(
+        queue: usersControllerQueue,
+        repeatingInterval: .seconds(1)
+    )
+    
+    public static let mock: DispatchSourceConfiguration = .init(
+        queue: usersControllerQueue,
+        repeatingInterval: .milliseconds(50)
+    )
+}
+
+// MARK: UsersController
+
 public protocol UsersController: ObservableObject {
     var users: [User] { get }
     
@@ -16,11 +39,16 @@ public protocol UsersController: ObservableObject {
 }
 
 public final class LiveUsersController: UsersController {
-    public init(apiClient: ApiClient) {
+    public init(
+        apiClient: ApiClient,
+        configuration: DispatchSourceConfiguration = .live
+    ) {
         self.apiClient = apiClient
+        self.configuration = configuration
     }
     
     @Published public private(set) var users: [User] = []
+    private let configuration: DispatchSourceConfiguration
     
     public func startFetchingUsers() {
         func terminateIfNeeded() {
@@ -32,8 +60,8 @@ public final class LiveUsersController: UsersController {
         
         terminateIfNeeded()
         
-        timer = DispatchSource.makeTimerSource(queue: queue)
-        timer?.schedule(deadline: .now(), repeating: .seconds(1))
+        timer = DispatchSource.makeTimerSource(queue: configuration.queue)
+        timer?.schedule(deadline: .now(), repeating: configuration.repeatingInterval)
         timer?.setEventHandler { [weak self] in
             precondition(!Thread.isMainThread, "Timer handler must not run on main thread!")
             
@@ -64,19 +92,14 @@ public final class LiveUsersController: UsersController {
         invalidateState()
         
         if cleanIfNeeded {
-            currentUserId = 1
             DispatchQueue.main.async {
+                self.currentUserId = 1
                 self.users.removeAll()
             }
         }
     }
     
     private let apiClient: ApiClient
-    private let queue = DispatchQueue(
-        label: "com.sureuniversal.apiclient.queue",
-        //        qos: .userInitiated /// these tasks are high priority but do not necessarily need to run on the main thread
-        qos: .utility /// these task are low priority but have higher priority than .background QoS
-    )
     
     private var timer: DispatchSourceTimer?
     private var currentUserId = 1
