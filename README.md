@@ -4,7 +4,7 @@ This repository contains the SureUniversalAssignment project.
 
 <details>
 <summary>Demo - Recording</summary>
-![ezgif-3743a133d00d9b](https://github.com/user-attachments/assets/510a74b8-64e7-4e00-af80-db6e98763b5e)
+![public-demo-screen-recording-iphone-16-pro](public/SimulatorScreenRecording_iPhone16Pro.mp4)
 </details>
 
 ## Requirements
