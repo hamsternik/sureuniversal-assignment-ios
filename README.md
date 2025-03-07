@@ -3,11 +3,49 @@
 This repository contains the SureUniversalAssignment project.
 
 <details>
-    <summary>Demo - Recording</summary>
+<summary>Demo - Recording</summary>
 ![ezgif-3743a133d00d9b](https://github.com/user-attachments/assets/510a74b8-64e7-4e00-af80-db6e98763b5e)
-
 </details>
 
+## Requirements
+
+Develop an iOS application with a bottom navigation bar that allows navigation between two screens:
+
+- Action Screen
+- Users Screen
+
+### The Action Screen
+
+The application will utilize the JSONPlaceholder API, which provides a set of endpoints and resources.
+
+The Action Screen must contain two buttons:
+
+- Start Button:
+    - Initiates a worker thread that performs the following tasks:
+        - Sends a network request every second to fetch a "user" resource, starting with user ID = 1 and ending with user ID = 10.
+        - The fetched user resources will be stored locally (no persistence required).
+        - This operation should be repeated for a total of 10 user resources.
+- Stop Button:
+    - Stops the worker thread if it is running.
+    - Deletes all previously stored user resources.
+
+Ref  1.
+
+### The Users Screen
+
+The Users Screen will display a scrollable list of cards, where each card represents a downloaded "user" resource.
+
+- Cards must be displayed in ascending order of user IDs.
+- Each card will prominently feature the name of the corresponding user in its center.
+- The list may be empty if no users have been downloaded.
+
+Ref 2.
+
+### Design and Requirements
+
+The application's looks must closely resemble the provided images, ensuring proper usage of colors, page titles, and navigation buttons.
+
+Prepare to articulate the rationale behind your design choices.
 
 ## Prerequisites
 
