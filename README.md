@@ -87,6 +87,11 @@ To run the unit tests, follow these steps:
 2. Select the target device or simulator.
 3. Click the "Test" button or press `Cmd + U`.
 
+## Resources
+
+- [{JSON} Placeholder](https://jsonplaceholder.typicode.com/) -- Free fake and reliable API for testing and prototyping.
+- [DispatchSource | Apple docs](https://developer.apple.com/documentation/dispatch/dispatchsource) -- An object that coordinates the processing of specific low-level system events.
+
 ## Contact
 
 If you have any questions or issues, please open an issue in this repository.
