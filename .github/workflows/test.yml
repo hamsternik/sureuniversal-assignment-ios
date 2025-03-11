@@ -11,9 +11,16 @@ jobs:
     name: Build, then Test any available iPhone simulator
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
-      #      - run: sudo xcode-select -switch /Applications/Xcode_16.2.app
-      - run: |
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.2.0'
+
+      - name: Run unit tests
+        run: |
           xcodebuild test \
           -scheme SureUniversalAssignment \
           -destination "platform=iOS Simulator,OS=18.3.1,name=iPhone 16 Pro" | xcbeautify 
