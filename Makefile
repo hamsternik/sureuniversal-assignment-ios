@@ -1,7 +1,13 @@
-OS_VERSION ?=18.3.1
-IPHONE ?=iPhone 16 Pro
-#-destination "platform=iOS Simulator,OS=18.3.1,name=iPhone 16 Pro"
-DESTINATION ?="platform=iOS Simulator,OS=$(OS_VERSION),name=$(IPHONE)"
+# Variables for make commands work on the local machine.
+OS_VERSION_LOCAL ?=18.3.1
+IPHONE_LOCAL ?=iPhone 16 Pro
+DESTINATION_LOCAL ?="platform=iOS Simulator,OS=$(OS_VERSION_LOCAL),name=$(IPHONE_LOCAL)"
+
+# Variables to make CI (github actions) works with the `macos-latest` available image.
+OS_VERSION_CI ?=18.2
+IPHONE_CI ?=iPhone 16 Pro
+DESTINATION_CI ?="platform=iOS Simulator,OS=$(OS_VERSION_CI),name=$(IPHONE_CI)"
+
 SCHEME ?=SureUniversalAssignment
 
 PIPELINE_ERROR = set -o pipefail &&
@@ -9,7 +15,7 @@ XCODEBUILD := xcodebuild
 BEAUTIFY := xcbeautify
 
 XCODEBUILD_PIPELINED := $(PIPELINE_ERROR) $(XCODEBUILD)
-BUILD_FLAGS := -project SureUniversalAssignment.xcodeproj -scheme $(SCHEME) -destination $(DESTINATION) -skipPackagePluginValidation
+BUILD_FLAGS := -project SureUniversalAssignment.xcodeproj -scheme $(SCHEME) -destination $(DESTINATION_LOCAL) -skipPackagePluginValidation
 TEST_FLAGS := $(BUILD_FLAGS) -configuration Debug #-testPlan UnitTestsAll
 EXTENDED_BUILD_FLAGS := CFLAGS="-ferror-limit=0"
 
@@ -42,7 +48,8 @@ build: xcodebuild-version xcodebuild-swift-version
 	set -o pipefail && xcodebuild build -scheme SureUniversalAssignment | xcbeautify
 
 test: xcodebuild-version xcodebuild-swift-version
-	set -o pipefail && xcodebuild test -scheme UnitTests -destination $(DESTINATION) | xcbeautify
+	set -o pipefail && xcodebuild test -scheme UnitTests -destination $(DESTINATION_LOCAL) | xcbeautify
 
-# test-ci: xcodebuild-version swift-version
-# 	$(PIPELINE_ERROR) $(XCODEBUILD) test $(TEST_FLAGS) | $(BEAUTIFY) --renderer github-actions
+test-ci: xcodebuild-version xcodebuild-swift-version
+	set -o pipefail && xcodebuild test -scheme UnitTests -destination $(DESTINATION_CI) | xcbeautify
+

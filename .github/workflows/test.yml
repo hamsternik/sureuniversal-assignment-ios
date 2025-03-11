@@ -20,5 +20,5 @@ jobs:
           xcode-version: '16.2.0'
 
       - name: Run unit tests
-        run: make test
+        run: make test-ci
 
