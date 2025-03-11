@@ -91,9 +91,10 @@ To run the unit tests, follow these steps:
 
 - [{JSON} Placeholder](https://jsonplaceholder.typicode.com/) -- Free fake and reliable API for testing and prototyping.
 - [DispatchSource | Apple docs](https://developer.apple.com/documentation/dispatch/dispatchsource) -- An object that coordinates the processing of specific low-level system events.
-- [Brewfile](https://thoughtbot.com/blog/brewfile-a-gemfile-but-for-homebrew) -- Brewfile: a Gemfile, but for Homebrew
-- [xcbeautify](https://github.com/cpisciotta/xcbeautify) -- A little beautifier tool for xcodebuild
+- [Brewfile](https://thoughtbot.com/blog/brewfile-a-gemfile-but-for-homebrew) -- Brewfile: a Gemfile, but for Homebrew.
+- [xcbeautify](https://github.com/cpisciotta/xcbeautify) -- A little beautifier tool for xcodebuild.
 - [act](https://nektosact.com/installation/homebrew.html) -- Run your GitHub Actions locally!
+- [setup-xcode gh action](https://github.com/maxim-lobanov/setup-xcode) -- Set up your GitHub Actions workflow with a specific version of Xcode.
 
 ## Contact
 
