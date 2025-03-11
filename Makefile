@@ -42,7 +42,7 @@ build: xcodebuild-version xcodebuild-swift-version
 	set -o pipefail && xcodebuild build -scheme SureUniversalAssignment | xcbeautify
 
 test: xcodebuild-version xcodebuild-swift-version
-	set -o pipefail && xcodebuild test -scheme SureUniversalAssignment -destination $(DESTINATION) | xcbeautify
+	set -o pipefail && xcodebuild test -scheme UnitTests -destination $(DESTINATION) | xcbeautify
 
 # test-ci: xcodebuild-version swift-version
 # 	$(PIPELINE_ERROR) $(XCODEBUILD) test $(TEST_FLAGS) | $(BEAUTIFY) --renderer github-actions

@@ -23,7 +23,7 @@ public struct DispatchSourceConfiguration {
     
     public static let mock: DispatchSourceConfiguration = .init(
         queue: .global(),
-        repeatingInterval: .milliseconds(50)
+        repeatingInterval: .milliseconds(10)
     )
 }
 
