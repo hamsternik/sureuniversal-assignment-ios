@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		62C865D72D76287D0010BA73 /* PBXContainerItemProxy */ = {
+		62AA73422D80762B00D542A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 62C865BE2D76287C0010BA73 /* Project object */;
 			proxyType = 1;
@@ -17,18 +17,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62AA733E2D80762B00D542A5 /* unit-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "unit-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C865C62D76287C0010BA73 /* SureUniversalAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SureUniversalAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		62C865D62D76287D0010BA73 /* SureUniversalAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SureUniversalAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		62A648E12D7788BA00D3877D /* Exceptions for "Resources" folder in "SureUniversalAssignmentTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"users-response.json",
-			);
-			target = 62C865D52D76287D0010BA73 /* SureUniversalAssignmentTests */;
-		};
 		62A648F42D7788C000D3877D /* Exceptions for "Tests" folder in "SureUniversalAssignment" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -36,12 +29,19 @@
 			);
 			target = 62C865C52D76287C0010BA73 /* SureUniversalAssignment */;
 		};
-		62A648F52D7788C000D3877D /* Exceptions for "Tests" folder in "SureUniversalAssignmentTests" target */ = {
+		62AA73762D80772F00D542A5 /* Exceptions for "Tests" folder in "unit-tests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SureUniversalAssignmentTests.swift,
 			);
-			target = 62C865D52D76287D0010BA73 /* SureUniversalAssignmentTests */;
+			target = 62AA733D2D80762B00D542A5 /* unit-tests */;
+		};
+		62AA73782D80773E00D542A5 /* Exceptions for "Resources" folder in "unit-tests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"users-response.json",
+			);
+			target = 62AA733D2D80762B00D542A5 /* unit-tests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -49,7 +49,7 @@
 		62A648DC2D7788BA00D3877D /* Resources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				62A648E12D7788BA00D3877D /* Exceptions for "Resources" folder in "SureUniversalAssignmentTests" target */,
+				62AA73782D80773E00D542A5 /* Exceptions for "Resources" folder in "unit-tests" target */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -63,7 +63,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				62A648F42D7788C000D3877D /* Exceptions for "Tests" folder in "SureUniversalAssignment" target */,
-				62A648F52D7788C000D3877D /* Exceptions for "Tests" folder in "SureUniversalAssignmentTests" target */,
+				62AA73762D80772F00D542A5 /* Exceptions for "Tests" folder in "unit-tests" target */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -71,14 +71,14 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		62C865C32D76287C0010BA73 /* Frameworks */ = {
+		62AA733B2D80762B00D542A5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		62C865D32D76287D0010BA73 /* Frameworks */ = {
+		62C865C32D76287C0010BA73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				62C865C62D76287C0010BA73 /* SureUniversalAssignment.app */,
-				62C865D62D76287D0010BA73 /* SureUniversalAssignmentTests.xctest */,
+				62AA733E2D80762B00D542A5 /* unit-tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,6 +110,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		62AA733D2D80762B00D542A5 /* unit-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62AA73462D80762B00D542A5 /* Build configuration list for PBXNativeTarget "unit-tests" */;
+			buildPhases = (
+				62AA733A2D80762B00D542A5 /* Sources */,
+				62AA733B2D80762B00D542A5 /* Frameworks */,
+				62AA733C2D80762B00D542A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				62AA73432D80762B00D542A5 /* PBXTargetDependency */,
+			);
+			name = "unit-tests";
+			packageProductDependencies = (
+			);
+			productName = "unit-tests";
+			productReference = 62AA733E2D80762B00D542A5 /* unit-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		62C865C52D76287C0010BA73 /* SureUniversalAssignment */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62C865EA2D76287D0010BA73 /* Build configuration list for PBXNativeTarget "SureUniversalAssignment" */;
@@ -134,26 +154,6 @@
 			productReference = 62C865C62D76287C0010BA73 /* SureUniversalAssignment.app */;
 			productType = "com.apple.product-type.application";
 		};
-		62C865D52D76287D0010BA73 /* SureUniversalAssignmentTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 62C865ED2D76287D0010BA73 /* Build configuration list for PBXNativeTarget "SureUniversalAssignmentTests" */;
-			buildPhases = (
-				62C865D22D76287D0010BA73 /* Sources */,
-				62C865D32D76287D0010BA73 /* Frameworks */,
-				62C865D42D76287D0010BA73 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				62C865D82D76287D0010BA73 /* PBXTargetDependency */,
-			);
-			name = SureUniversalAssignmentTests;
-			packageProductDependencies = (
-			);
-			productName = SureUniversalAssignmentTests;
-			productReference = 62C865D62D76287D0010BA73 /* SureUniversalAssignmentTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -164,12 +164,12 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					62C865C52D76287C0010BA73 = {
-						CreatedOnToolsVersion = 16.2;
-					};
-					62C865D52D76287D0010BA73 = {
+					62AA733D2D80762B00D542A5 = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 62C865C52D76287C0010BA73;
+					};
+					62C865C52D76287C0010BA73 = {
+						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
@@ -188,20 +188,20 @@
 			projectRoot = "";
 			targets = (
 				62C865C52D76287C0010BA73 /* SureUniversalAssignment */,
-				62C865D52D76287D0010BA73 /* SureUniversalAssignmentTests */,
+				62AA733D2D80762B00D542A5 /* unit-tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		62C865C42D76287C0010BA73 /* Resources */ = {
+		62AA733C2D80762B00D542A5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		62C865D42D76287D0010BA73 /* Resources */ = {
+		62C865C42D76287C0010BA73 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -211,14 +211,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		62C865C22D76287C0010BA73 /* Sources */ = {
+		62AA733A2D80762B00D542A5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		62C865D22D76287D0010BA73 /* Sources */ = {
+		62C865C22D76287C0010BA73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -228,14 +228,60 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		62C865D82D76287D0010BA73 /* PBXTargetDependency */ = {
+		62AA73432D80762B00D542A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 62C865C52D76287C0010BA73 /* SureUniversalAssignment */;
-			targetProxy = 62C865D72D76287D0010BA73 /* PBXContainerItemProxy */;
+			targetProxy = 62AA73422D80762B00D542A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		62AA73442D80762B00D542A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C5B4S79D6V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hamsternik.unit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SureUniversalAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SureUniversalAssignment";
+			};
+			name = Debug;
+		};
+		62AA73452D80762B00D542A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C5B4S79D6V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hamsternik.unit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SureUniversalAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SureUniversalAssignment";
+			};
+			name = Release;
+		};
 		62C865E82D76287D0010BA73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -425,55 +471,18 @@
 			};
 			name = Release;
 		};
-		62C865EE2D76287D0010BA73 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C5B4S79D6V;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hamsternik.SureUniversalAssignmentTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SureUniversalAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SureUniversalAssignment";
-			};
-			name = Debug;
-		};
-		62C865EF2D76287D0010BA73 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C5B4S79D6V;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hamsternik.SureUniversalAssignmentTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SureUniversalAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SureUniversalAssignment";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		62AA73462D80762B00D542A5 /* Build configuration list for PBXNativeTarget "unit-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62AA73442D80762B00D542A5 /* Debug */,
+				62AA73452D80762B00D542A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		62C865C12D76287C0010BA73 /* Build configuration list for PBXProject "SureUniversalAssignment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -488,15 +497,6 @@
 			buildConfigurations = (
 				62C865EB2D76287D0010BA73 /* Debug */,
 				62C865EC2D76287D0010BA73 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		62C865ED2D76287D0010BA73 /* Build configuration list for PBXNativeTarget "SureUniversalAssignmentTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				62C865EE2D76287D0010BA73 /* Debug */,
-				62C865EF2D76287D0010BA73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
