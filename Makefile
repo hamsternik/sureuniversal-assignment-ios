@@ -1,7 +1,7 @@
 OS_VERSION ?=18.3.1
 IPHONE ?=iPhone 16 Pro
 #-destination "platform=iOS Simulator,OS=18.3.1,name=iPhone 16 Pro"
-DESTINATION ?= platform=iOS Simulator,OS=$(OS_VERSION),name=$(IPHONE)
+DESTINATION ?="platform=iOS Simulator,OS=$(OS_VERSION),name=$(IPHONE)"
 SCHEME ?=SureUniversalAssignment
 
 PIPELINE_ERROR = set -o pipefail &&
@@ -18,6 +18,9 @@ help:
 
 open: 
 	@xed .
+
+validate-gh-actions:
+	@act push -P macos-latest=-self-hosted
 
 xcodebuild:
 	$(PIPELINE_ERROR) $(XCODEBUILD) $(CMD_ARG) $(BUILD_FLAGS) $(EXTENDED_BUILD_FLAGS) | $(BEAUTIFY)
@@ -39,7 +42,7 @@ build: xcodebuild-version xcodebuild-swift-version
 	set -o pipefail && xcodebuild build -scheme SureUniversalAssignment | xcbeautify
 
 test: xcodebuild-version xcodebuild-swift-version
-	set -o pipefail && xcodebuild test -scheme SureUniversalAssignment | xcbeautify
+	set -o pipefail && xcodebuild test -scheme SureUniversalAssignment -destination $(DESTINATION) | xcbeautify
 
 # test-ci: xcodebuild-version swift-version
 # 	$(PIPELINE_ERROR) $(XCODEBUILD) test $(TEST_FLAGS) | $(BEAUTIFY) --renderer github-actions
