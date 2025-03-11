@@ -20,8 +20,5 @@ jobs:
           xcode-version: '16.2.0'
 
       - name: Run unit tests
-        run: |
-          xcodebuild test \
-          -scheme SureUniversalAssignment \
-          -destination "platform=iOS Simulator,OS=18.2,name=iPhone 16 Pro" | xcbeautify 
+        run: make test
 
