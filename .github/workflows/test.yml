@@ -23,5 +23,5 @@ jobs:
         run: |
           xcodebuild test \
           -scheme SureUniversalAssignment \
-          -destination "platform=iOS Simulator,OS=18.3.1,name=iPhone 16 Pro" | xcbeautify 
+          -destination "platform=iOS Simulator,OS=18.2,name=iPhone 16 Pro" | xcbeautify 
 
