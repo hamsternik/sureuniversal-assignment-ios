@@ -8,7 +8,11 @@
 import SwiftUI
 
 @main
-struct Application: App {
+struct Application {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+}
+
+extension Application: App {
     var body: some Scene {
         WindowGroup {
             RootView(
