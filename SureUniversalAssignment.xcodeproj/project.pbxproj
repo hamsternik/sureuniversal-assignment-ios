@@ -25,6 +25,7 @@
 		62A648F42D7788C000D3877D /* Exceptions for "Tests" folder in "SureUniversalAssignment" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				StoreTests.swift,
 				SureUniversalAssignmentTests.swift,
 			);
 			target = 62C865C52D76287C0010BA73 /* SureUniversalAssignment */;
@@ -32,6 +33,7 @@
 		62AA73762D80772F00D542A5 /* Exceptions for "Tests" folder in "unit-tests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				StoreTests.swift,
 				SureUniversalAssignmentTests.swift,
 			);
 			target = 62AA733D2D80762B00D542A5 /* unit-tests */;
