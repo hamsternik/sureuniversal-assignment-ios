@@ -14,6 +14,10 @@ private struct TestState: Equatable {
     let id: String
 }
 
+private struct TestAction: Action, Equatable {
+    let id: String
+}
+
 final class StoreTests: XCTestCase {
     private var state: TestState!
     private var dispatchedActions: [Action]!
@@ -48,5 +52,32 @@ final class StoreTests: XCTestCase {
         })
         wait(for: [expectation], timeout: 1)
         
+    }
+    
+    func testDispatchAction() {
+        let expectation = XCTestExpectation(description: "expecting dispatched action")
+        let expectedActions = [
+            TestAction(id: "1"),
+            TestAction(id: "2"),
+            TestAction(id: "3")
+        ]
+        
+        sut.dispatch(action: expectedActions[0])
+        sut.dispatch(action: expectedActions[1])
+        sut.dispatch(action: expectedActions[2])
+        
+        sut.observe(with: CommandWith<TestState>{ [unowned self] state in
+            if self.dispatchedActions.count == 3 {
+                expectation.fulfill()
+            }
+        })
+        
+        
+        wait(for: [expectation], timeout: 1)
+        
+        XCTAssertEqual(dispatchedActions[0] as! TestAction, expectedActions[0])
+        XCTAssertEqual(dispatchedActions[1] as! TestAction, expectedActions[1])
+        XCTAssertEqual(dispatchedActions[2] as! TestAction, expectedActions[2])
+        expectation.fulfill()
     }
 }
