@@ -35,12 +35,13 @@ public typealias Dispatch = (Action) -> Void
 
 public typealias Middleware<State> = (@escaping Dispatch, @escaping () -> State?, @escaping Dispatch) -> Dispatch
 
-public final class Store<State>: Dispatcher {
+public final class Store<State>: Dispatcher, ObservableObject {
     private let queue = DispatchQueue(label: "com.sureuniversal.store.queue")
     private let subscriptionLock = NSRecursiveLock()
     
     /// Entire application state
-    public private(set) var state: State
+//    public private(set) var state: State
+    @Published public private(set) var state: State
     
     private let reducer: Reducer<State>
     

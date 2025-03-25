@@ -18,12 +18,14 @@ extension Actions {
 }
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
-    fileprivate private(set) lazy var store = Store(
+    public private(set) lazy var store = Store(
         state: State.initial,
         reducer: reduce,
-        middleware: []
+        middleware: [
+//            CoordinatorMiddleware(handler: )
+        ]
     )
-    
+
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
